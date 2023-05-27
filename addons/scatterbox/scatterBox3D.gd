@@ -266,7 +266,14 @@ func scatter_obj():
 func erase_obj():
 	var pos := draw_pointer.global_position
 	
-	var box = AABB(pos, placement_size)
+	var start_pos = pos 
+	start_pos -= Vector3(placement_size.x/2, placement_size.y/2, placement_size.z/2)
+	
+	var end_pos = pos
+	end_pos += Vector3(placement_size.x/2, placement_size.y/2, placement_size.z/2)
+	
+	var box = AABB(start_pos, placement_size)
+	
 	
 	for mesh_num in range(multiMeshes.size()):
 		var multimeshInst = multiMeshes[mesh_num]
