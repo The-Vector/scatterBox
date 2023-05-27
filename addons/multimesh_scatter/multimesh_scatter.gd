@@ -207,7 +207,7 @@ func _update_debug_area_size() -> void:
 func _update() -> void:
 	if !_space: return
 	scatter()
-
+	
 	if Engine.is_editor_hint():
 		_update_debug_area_size()
 
