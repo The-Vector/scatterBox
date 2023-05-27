@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqigsja5cxb0t"]
+
+[ext_resource type="ArrayMesh" uid="uid://cphvxowdhpyxs" path="res://tree1.obj" id="1_8gvpx"]
+[ext_resource type="Texture2D" uid="uid://kb2d8t6b5408" path="res://pineTree_bark.png" id="2_p6i4n"]
+[ext_resource type="Texture2D" uid="uid://bqfgsww0lwu26" path="res://pineTree_leaves.png" id="3_h31vm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6tr7i"]
+albedo_texture = ExtResource("2_p6i4n")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_10tgd"]
+albedo_texture = ExtResource("3_h31vm")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Tree1" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_8gvpx")
+surface_material_override/0 = SubResource("StandardMaterial3D_6tr7i")
+surface_material_override/1 = SubResource("StandardMaterial3D_10tgd")

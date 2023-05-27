@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://byuy7b0a87145"]
+
+[ext_resource type="Script" path="res://addons/scatterbox/scatterBox3D.gd" id="1_00bmp"]
+[ext_resource type="PackedScene" uid="uid://btrsvi4i0nxar" path="res://testTree.tscn" id="2_awbwy"]
+[ext_resource type="PackedScene" uid="uid://dqigsja5cxb0t" path="res://testTree2.tscn" id="3_36c7q"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ipgsw"]
+size = Vector2(10, 10)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_044ut"]
+data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(11.088, 0, 0, 0, 1.8, 0, 0, 0, 10.656, 0, 0, 0)
+mesh = SubResource("PlaneMesh_ipgsw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_044ut")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(11.088, 0, 0, 0, 1.8, 0, 0, 0, 10.656, 80.8335, 17.7635, 0)
+mesh = SubResource("PlaneMesh_ipgsw")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_044ut")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.689318, 0.150941, -0.70856, 0.0296272, 0.971363, 0.235747, 0.723853, -0.183497, 0.665106, 56.3239, 30.9905, 44.3588)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.811971, -0.355381, 0.463041, 0, 0.79329, 0.608844, -0.583697, -0.494364, 0.644129, 18.0568, 0.783022, 10.0495)
+shadow_enabled = true
+
+[node name="ScatterBox3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0)
+script = ExtResource("1_00bmp")
+meshes = Array[PackedScene]([ExtResource("3_36c7q"), ExtResource("2_awbwy")])
+count = 2
+
+[node name="DrawPointer" type="Node3D" parent="ScatterBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 66.6599, 17.7635, 28.4405)
+
+[node name="@DrawPointer@37638" type="Node3D" parent="ScatterBox3D"]
+
+[node name="@DrawPointer@16907" type="Node3D" parent="ScatterBox3D"]
+
+[node name="@DrawPointer@16908" type="Node3D" parent="ScatterBox3D"]
