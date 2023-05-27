@@ -3,6 +3,7 @@ extends Node3D
 class_name ScatterBox3D
 
 @export var meshes: Array[Mesh]
+@export var mesh_materials: Array[Material]
 
 
 @export var deleteAll := false:
@@ -90,6 +91,7 @@ func refresh():
 		multiMeshes.append(i)
 	
 	if multiMeshes == []:
+		var index = 0
 		for mesh in meshes:
 			var newMultimeshInst = MultiMeshInstance3D.new()
 			object_parent.add_child(newMultimeshInst)
@@ -100,6 +102,9 @@ func refresh():
 			newMultimesh.transform_format = MultiMesh.TRANSFORM_3D
 			newMultimeshInst.multimesh = newMultimesh
 			newMultimesh.mesh = mesh
+			
+			newMultimesh.mesh.surface_set_material(0, mesh_materials[index])
+			index += 1
 
 
 # Called when the node enters the scene tree for the first time.
@@ -221,11 +226,8 @@ func scatter_obj():
 		var t := Transform3D()
 		t.origin = pos
 		
-		#var t = hit.position - draw_pointer.global_position + offset_position
 		
 		var rand_mesh = _rng.randi_range(0, meshes.size()-1)
-		
-		#var inst = meshes[rand_mesh].instantiate()
 		
 		var multimeshInst = multiMeshes[rand_mesh]
 		var multiMesh = multimeshInst.multimesh
@@ -242,12 +244,6 @@ func scatter_obj():
 			multiMesh.set_instance_transform(oldT, transforms[oldT])
 		
 		multiMesh.set_instance_transform(multiMesh.instance_count-1, t)
-		
-		#if(object_parent != null):
-		#	object_parent.add_child(inst)
-		
-		#inst.set_owner(get_tree().edited_scene_root)
-		#inst.global_transform.origin = pos
 
 
 func delete_obj():
