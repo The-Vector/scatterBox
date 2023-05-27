@@ -23,6 +23,7 @@ class_name ScatterBox3D
 			refresh()
 		refresh_btn = false
 
+
 #if the models/objects need collisions
 @export var enable_collisions := false:
 	get: return enable_collisions
@@ -30,7 +31,7 @@ class_name ScatterBox3D
 		pass
 
 
-@export var offset_position := Vector3(10.0, 10.0, 10.0):
+@export var offset_position := Vector3(0, 0, 0):
 	get: return offset_position
 	set(value):
 		offset_position = value.clamp(Vector3.ONE * -100.0, Vector3.ONE * 100.0)
@@ -225,10 +226,8 @@ func _update() -> void:
 		_update_debug_area_size()
 
 
+
 func scatter_obj():
-	#clear the current children
-	#for i in get_children():
-	#	i.queue_free()
 	for i in range(count):
 		var pos := draw_pointer.global_position
 		
@@ -242,8 +241,19 @@ func scatter_obj():
 				_rng.randf_range(min_random_size.y, max_random_size.y),
 				_rng.randf_range(min_random_size.z, max_random_size.z))
 		
+		
 		var t := Transform3D()
 		t.origin = pos
+		
+		t.origin += offset_position
+		
+		t.basis = t.basis.scaled(Vector3(
+			_rng.randf_range(min_random_size.x, max_random_size.x),
+			_rng.randf_range(min_random_size.y, max_random_size.y),
+			_rng.randf_range(min_random_size.z, max_random_size.z)))\
+			.rotated(Vector3.RIGHT, deg_to_rad(_rng.randf_range(-random_rotation.x, random_rotation.x)))\
+			.rotated(Vector3.UP, deg_to_rad(_rng.randf_range(-random_rotation.y, random_rotation.y)))\
+			.rotated(Vector3.FORWARD, deg_to_rad(_rng.randf_range(-random_rotation.z, random_rotation.z)))
 		
 		
 		var rand_mesh = _rng.randi_range(0, meshes.size()-1)
@@ -269,11 +279,7 @@ func erase_obj():
 	var start_pos = pos 
 	start_pos -= Vector3(placement_size.x/2, placement_size.y/2, placement_size.z/2)
 	
-	var end_pos = pos
-	end_pos += Vector3(placement_size.x/2, placement_size.y/2, placement_size.z/2)
-	
 	var box = AABB(start_pos, placement_size)
-	
 	
 	for mesh_num in range(multiMeshes.size()):
 		var multimeshInst = multiMeshes[mesh_num]
