@@ -5,6 +5,8 @@ class_name ScatterBox3D
 @export var meshes: Array[Mesh]
 @export var mesh_materials: Array[Material]
 
+@export var scenes: Array[PackedScene]
+
 
 @export var deleteAll := false:
 	get: return deleteAll
@@ -20,6 +22,12 @@ class_name ScatterBox3D
 		if(value):
 			refresh()
 		refresh_btn = false
+
+#if the models/objects need collisions
+@export var enable_collisions := false:
+	get: return enable_collisions
+	set(enable_collisions):
+		pass
 
 
 @export var offset_position := Vector3(10.0, 10.0, 10.0):
@@ -38,6 +46,8 @@ var multiMeshes = []
 
 var draw_pointer : Node3D
 var object_parent : Node3D
+
+var is_drawing = true
 
 ## The number of instances to generate.
 @export_range(0, 10000, 1) var count := 100:
@@ -83,7 +93,6 @@ var _rng := RandomNumberGenerator.new()
 @onready var _space: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
 
 
-
 func refresh():
 	multiMeshes = []
 	
@@ -91,7 +100,6 @@ func refresh():
 		multiMeshes.append(i)
 	
 	if multiMeshes == []:
-		var index = 0
 		for mesh in meshes:
 			var newMultimeshInst = MultiMeshInstance3D.new()
 			object_parent.add_child(newMultimeshInst)
@@ -102,9 +110,10 @@ func refresh():
 			newMultimesh.transform_format = MultiMesh.TRANSFORM_3D
 			newMultimeshInst.multimesh = newMultimesh
 			newMultimesh.mesh = mesh
-			
-			newMultimesh.mesh.surface_set_material(0, mesh_materials[index])
-			index += 1
+	
+	for i in range(meshes.size()):
+		var newMultimesh = object_parent.get_child(i)
+		newMultimesh.multimesh.mesh.surface_set_material(0, mesh_materials[i])
 
 
 # Called when the node enters the scene tree for the first time.
@@ -134,7 +143,6 @@ func _ready():
 	refresh()
 
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Engine.is_editor_hint():
@@ -159,8 +167,19 @@ func move_to_mouse(camera, mouse: Vector2):
 		return false
 	
 	draw_pointer.global_transform.origin = result.position
-	scatter_obj()
+	if(is_drawing):
+		scatter_obj()
+	else:
+		erase_obj()
 	return true
+
+
+func toggle_drawing():
+	is_drawing = !is_drawing
+	if(is_drawing):
+		print("Draw mode")
+	else:
+		print("Erase mode")
 
 
 func _delete_debug_area() -> void:
@@ -232,11 +251,9 @@ func scatter_obj():
 		var multimeshInst = multiMeshes[rand_mesh]
 		var multiMesh = multimeshInst.multimesh
 		
-		
 		var transforms = []
 		for oldT in multiMesh.instance_count:
 			transforms.append(multiMesh.get_instance_transform(oldT))
-		
 		
 		multiMesh.instance_count += 1
 		
@@ -246,11 +263,34 @@ func scatter_obj():
 		multiMesh.set_instance_transform(multiMesh.instance_count-1, t)
 
 
+func erase_obj():
+	var pos := draw_pointer.global_position
+	
+	var box = AABB(pos, placement_size)
+	
+	for mesh_num in range(multiMeshes.size()):
+		var multimeshInst = multiMeshes[mesh_num]
+		var multiMesh = multimeshInst.multimesh
+		
+		var transforms = []
+		
+		for oldT in multiMesh.instance_count:
+			var cur_t = multiMesh.get_instance_transform(oldT)
+			
+			if(box.has_point(cur_t.origin)):
+				continue
+			else:
+				transforms.append(cur_t)
+		
+		multiMesh.instance_count = transforms.size()
+			
+		for oldT in multiMesh.instance_count-1:
+			multiMesh.set_instance_transform(oldT, transforms[oldT])
+	
+
 func delete_obj():
 	for i in object_parent.get_children():
 		i.queue_free()
 	refresh()
 
 
-func undo_scatter():
-	pass

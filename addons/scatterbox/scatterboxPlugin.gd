@@ -23,11 +23,9 @@ func _enter_tree():
 	InputMap.action_add_event("PlaceTerrain", ev)
 	
 	undo_redo.create_action("Scatter Objects")
-	#undo_redo.add_do_method(self, "do_something")
-	#undo_redo.add_undo_method(self, "undo_something")
-	#undo_redo.add_do_property(node, "position", Vector2(100,100))
-	#undo_redo.add_undo_property(node, "position", node.position)
-	#undo_redo.commit_action()
+	undo_redo.add_do_method(ScatterBox3D, "scatter")
+	undo_redo.add_undo_method(ScatterBox3D, "undo_scatter")
+	undo_redo.commit_action()
 	
 
 func _exit_tree():
@@ -50,19 +48,17 @@ func _handles(object):
 func _forward_3d_gui_input(viewport_camera, event):
 	var captured_event = false
 	
-	can_move_selection = true
 	#if ctrl held/pressed dont do anything
 	if(event is InputEventKey):
-		if(event.keycode == KEY_CTRL):
+		if(event.keycode == KEY_ALT):
 			if(event.pressed):
 				can_move_selection = false
-				#return false
-		
-		if(event.keycode == KEY_Z and can_move_selection == false):
-			print("undo")
-			#return false
+			else:
+				can_move_selection = true
+		if(event.keycode == KEY_E):
+			if(event.pressed and selected_node != null):
+				selected_node.toggle_drawing()
 	
-	#print(can_move_selection)
 	
 	if(can_move_selection):
 		if(event is InputEventMouseButton):
@@ -86,5 +82,5 @@ func _forward_3d_gui_input(viewport_camera, event):
 
 func move_object_to_mouse(camera, object, mouse_pos):
 	object.move_to_mouse(camera, mouse_pos)
-	
+
 
