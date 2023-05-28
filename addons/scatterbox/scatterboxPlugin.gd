@@ -10,6 +10,7 @@ var selected_node
 var mouse_down = false
 var can_move_selection = true
 
+var erase_button : CheckBox = null
 
 func _enter_tree():
 	# Initialization of the plugin goes here.
@@ -22,16 +23,41 @@ func _enter_tree():
 	ev.keycode = KEY_C
 	InputMap.action_add_event("PlaceTerrain", ev)
 	
-	undo_redo.create_action("Scatter Objects")
-	undo_redo.add_do_method(ScatterBox3D, "scatter")
-	undo_redo.add_undo_method(ScatterBox3D, "undo_scatter")
-	undo_redo.commit_action()
-	
+	add_erase_button()
+
+
 
 func _exit_tree():
 	# Clean-up of the plugin goes here.
 	remove_custom_type("ScatterBox3D")
 	InputMap.action_erase_events("PlaceTerrain")
+	remove_erase_button()
+
+
+func _make_visible(visible):
+	if visible:
+		add_erase_button()
+	else:
+		remove_erase_button()
+
+
+func add_erase_button():
+	if erase_button != null:
+		return
+	
+	erase_button = CheckBox.new()
+	erase_button.text = "Erase: "
+	erase_button.connect("toggled", toggle_drawing)
+	add_control_to_container(EditorPlugin.CONTAINER_SPATIAL_EDITOR_MENU, erase_button)
+
+func remove_erase_button():
+	if erase_button == null:
+		return
+	
+	remove_control_from_container(EditorPlugin.CONTAINER_SPATIAL_EDITOR_MENU, erase_button)
+	erase_button.queue_free()
+	erase_button = null
+
 
 
 func _on_selection_changed():
@@ -56,8 +82,8 @@ func _forward_3d_gui_input(viewport_camera, event):
 			else:
 				can_move_selection = true
 		if(event.keycode == KEY_E):
-			if(event.pressed and selected_node != null):
-				selected_node.toggle_drawing()
+			if(event.pressed):
+				erase_button.button_pressed = !erase_button.button_pressed
 	
 	
 	if(can_move_selection):
@@ -78,6 +104,12 @@ func _forward_3d_gui_input(viewport_camera, event):
 	
 	return captured_event
 
+
+
+func toggle_drawing(_toggle = false):
+	if(selected_node != null):
+		var res = selected_node.toggle_drawing()
+	
 
 
 func move_object_to_mouse(camera, object, mouse_pos):

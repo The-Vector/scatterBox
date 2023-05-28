@@ -19,4 +19,4 @@ project/assembly_name="Plugin Test"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/multimesh_scatter/plugin.cfg", "res://addons/scatterbox/plugin.cfg")
+enabled=PackedStringArray("res://addons/scatterbox/plugin.cfg")

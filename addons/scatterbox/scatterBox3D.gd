@@ -181,6 +181,7 @@ func toggle_drawing():
 		print("Draw mode")
 	else:
 		print("Erase mode")
+	return is_drawing
 
 
 func _delete_debug_area() -> void:
