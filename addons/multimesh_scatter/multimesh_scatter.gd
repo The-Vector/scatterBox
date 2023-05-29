@@ -235,15 +235,15 @@ func scatter() -> void:
 					_rng.randf_range(-placement_size.x / 2.0, placement_size.x / 2.0),
 					0.0,
 					_rng.randf_range(-placement_size.z / 2.0, placement_size.z / 2.0))
-
+		
 		var ray := PhysicsRayQueryParameters3D.create(
 			pos + Vector3.UP * (placement_size.y / 2.0),
 			pos + Vector3.DOWN * (placement_size.y / 2.0),
 			collision_mask)
-
+		
 		var hit := _space.intersect_ray(ray)
 		if hit.is_empty(): continue
-
+		
 		var t := Transform3D(
 			Basis(
 				hit.normal.cross(global_transform.basis.z),

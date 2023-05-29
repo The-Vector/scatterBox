@@ -74,19 +74,23 @@ func _handles(object):
 func _forward_3d_gui_input(viewport_camera, event):
 	var captured_event = false
 	
-	#if ctrl held/pressed dont do anything
+	#if alt held/pressed dont do anything
 	if(event is InputEventKey):
 		if(event.keycode == KEY_ALT):
 			if(event.pressed):
 				can_move_selection = false
+				return false
+			
 			else:
 				can_move_selection = true
+		
+		#E switches between erase and draw modes
 		if(event.keycode == KEY_E):
 			if(event.pressed):
 				erase_button.button_pressed = !erase_button.button_pressed
 	
 	#scroll wheel to change the size of the draw bow
-	if(event is InputEventMouseButton and selected_node != null):
+	if(event is InputEventMouseButton and selected_node != null and can_move_selection):
 		if(event.button_index == 4):
 			selected_node.grow_box()
 			captured_event = true
@@ -94,8 +98,8 @@ func _forward_3d_gui_input(viewport_camera, event):
 			selected_node.shrink_box()
 			captured_event = true
 	
-	
-	if(can_move_selection):
+	#mouse stuff
+	if(can_move_selection and selected_node != null):
 		if(event is InputEventMouseButton):
 			if(event.button_index == MOUSE_BUTTON_LEFT):
 				if(event.pressed == false):
@@ -103,13 +107,18 @@ func _forward_3d_gui_input(viewport_camera, event):
 					captured_event = true
 				else:
 					mouse_down = true
-					var res = move_object_to_mouse(viewport_camera, selected_node, event.position)
-					captured_event = res
 					
-		if event is InputEventMouseMotion and mouse_down:
-			if(selected_node != null):
-				move_object_to_mouse(viewport_camera, selected_node, event.position)
-				captured_event = true
+		
+		if event is InputEventMouseMotion:
+			if(mouse_down):
+				if(selected_node != null):
+					move_object_to_mouse(viewport_camera, selected_node, event.position)
+					selected_node.draw()
+					captured_event = true
+			else:
+				var res = move_object_to_mouse(viewport_camera, selected_node, event.position)
+				captured_event = res
+		
 	
 	return captured_event
 

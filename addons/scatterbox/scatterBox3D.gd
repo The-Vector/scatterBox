@@ -171,12 +171,29 @@ func move_to_mouse(camera, mouse: Vector2):
 	if result.is_empty(): 
 		return false
 	
+		
+	var t := Transform3D()
+	t.origin = result.position
+		
+	t.origin += offset_position
+		
+	#align mesh with floor nomral
+	t.basis = Basis(result.normal.cross(global_transform.basis.z),
+			result.normal,
+			global_transform.basis.x.cross(result.normal),
+		).orthonormalized()
+	
+	draw_pointer.basis = t.basis
+	
 	draw_pointer.global_transform.origin = result.position
+	return true
+
+
+func draw():
 	if(is_drawing):
 		scatter_obj()
 	else:
 		erase_obj()
-	return true
 
 
 func toggle_drawing():
@@ -248,25 +265,42 @@ func shrink_box():
 	placement_size.z = clamp(placement_size.z, 0, placement_size.z)
 	_update_debug_area_size()
 
+
 func scatter_obj():
 	for i in range(count):
 		var pos := draw_pointer.global_position
 		
 		pos += Vector3(
 			_rng.randf_range(-placement_size.x / 2.0, placement_size.x / 2.0),
-			0.0,
+			0,
 			_rng.randf_range(-placement_size.z / 2.0, placement_size.z / 2.0))
 		
 		pos = pos + Vector3(
 				_rng.randf_range(min_random_size.x, max_random_size.x),
-				_rng.randf_range(min_random_size.y, max_random_size.y),
+				0,
 				_rng.randf_range(min_random_size.z, max_random_size.z))
 		
 		
-		var t := Transform3D()
-		t.origin = pos
+		var startPos = pos
+		startPos.y += placement_size.y
+		var endPos = pos
+		endPos.y -= placement_size.y
 		
+		var ray = PhysicsRayQueryParameters3D.create(startPos, endPos)
+		
+		var hit = _space.intersect_ray(ray)
+		
+		if(hit.is_empty()): continue
+		
+		var t := Transform3D()
+		t.origin = hit.position
 		t.origin += offset_position
+		
+		#https://kidscancode.org/godot_recipes/3.x/3d/3d_align_surface/index.html
+		t.basis.y = hit.normal
+		t.basis.x = -t.basis.z.cross(hit.normal)
+		t.basis = t.basis.orthonormalized()
+		
 		
 		t.basis = t.basis.scaled(Vector3(
 			_rng.randf_range(min_random_size.x, max_random_size.x),
