@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqfgsww0lwu26"
-path.s3tc="res://.godot/imported/pineTree_leaves.png-b0e9471ccfc4774646fbaaa8e091e21f.s3tc.ctex"
+uid="uid://kb2d8t6b5408"
+path.s3tc="res://.godot/imported/pineTree_bark.png-47e20c4a2992052c6e3536edbf4aa016.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://pineTree_leaves.png"
-dest_files=["res://.godot/imported/pineTree_leaves.png-b0e9471ccfc4774646fbaaa8e091e21f.s3tc.ctex"]
+source_file="res://tempAssets/pineTree_bark.png"
+dest_files=["res://.godot/imported/pineTree_bark.png-47e20c4a2992052c6e3536edbf4aa016.s3tc.ctex"]
 
 [params]
 

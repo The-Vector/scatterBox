@@ -1,0 +1,80 @@
+[gd_scene load_steps=12 format=3 uid="uid://mbn22bwqxdim"]
+
+[ext_resource type="Script" path="res://addons/scatterbox/scatterMesh3D.gd" id="1_3r3v4"]
+[ext_resource type="ArrayMesh" uid="uid://c82e6hpg6t5kw" path="res://tempAssets/deadTree.obj" id="2_efdfu"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ipgsw"]
+size = Vector2(10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2gnoy"]
+albedo_color = Color(0.219608, 0.556863, 0.211765, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_044ut"]
+data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_6drcc"]
+data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_obt8j"]
+
+[sub_resource type="Sky" id="Sky_n44n5"]
+sky_material = SubResource("ProceduralSkyMaterial_obt8j")
+
+[sub_resource type="Environment" id="Environment_ts1rx"]
+background_mode = 2
+sky = SubResource("Sky_n44n5")
+ambient_light_color = Color(0.411765, 0.411765, 0.411765, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_thf6c"]
+
+[sub_resource type="MultiMesh" id="MultiMesh_oh04x"]
+transform_format = 1
+instance_count = 3
+mesh = ExtResource("2_efdfu")
+buffer = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[node name="root" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(17.7408, 0, 0, 0, 1.8, 0, 0, 0, 13.9087, 29, 0, 10)
+mesh = SubResource("PlaneMesh_ipgsw")
+surface_material_override/0 = SubResource("StandardMaterial3D_2gnoy")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_044ut")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(10.7442, -0.444781, 0, 2.73985, 1.74418, 0, 0, 0, 10.656, 114.03, 22.8999, 0)
+mesh = SubResource("PlaneMesh_ipgsw")
+surface_material_override/0 = SubResource("StandardMaterial3D_2gnoy")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_6drcc")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.689318, 0.150941, -0.70856, 0.0296272, 0.971363, 0.235747, 0.723853, -0.183497, 0.665106, -29.2054, 5.46726, 84.6648)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.819302, 0.349088, -0.454842, 1.73955e-08, 0.79329, 0.608844, 0.573362, -0.498827, 0.649944, 22.8811, 17.0385, 62.4693)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ts1rx")
+
+[node name="ScatterMesh3D" type="Node3D" parent="."]
+script = ExtResource("1_3r3v4")
+meshes = Array[Mesh]([ExtResource("2_efdfu")])
+mesh_materials = Array[Material]([SubResource("StandardMaterial3D_thf6c")])
+count = 2
+
+[node name="DrawPointer" type="Node3D" parent="ScatterMesh3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8439, -3.43323e-06, -39.8917)
+
+[node name="ObjectParent" type="Node3D" parent="ScatterMesh3D"]
+
+[node name="@@22156" type="MultiMeshInstance3D" parent="ScatterMesh3D/ObjectParent"]
+multimesh = SubResource("MultiMesh_oh04x")

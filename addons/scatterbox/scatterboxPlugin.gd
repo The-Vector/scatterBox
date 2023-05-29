@@ -14,7 +14,8 @@ var erase_button : CheckBox = null
 
 func _enter_tree():
 	# Initialization of the plugin goes here.
-	add_custom_type("ScatterBox3D", "Node3D", preload("scatterBox3D.gd"), preload("scatterbox3D.png"))
+	add_custom_type("ScatterMesh3D", "Node3D", preload("scatterMesh3D.gd"), preload("scatterbox3D.png"))
+	
 	
 	selection.selection_changed.connect(_on_selection_changed)
 	
@@ -29,7 +30,7 @@ func _enter_tree():
 
 func _exit_tree():
 	# Clean-up of the plugin goes here.
-	remove_custom_type("ScatterBox3D")
+	remove_custom_type("ScatterMesh3D")
 	InputMap.action_erase_events("PlaceTerrain")
 	remove_erase_button()
 
@@ -65,7 +66,7 @@ func _on_selection_changed():
 
 
 func _handles(object):
-	if (object is ScatterBox3D):
+	if (object is ScatterMesh3D):
 		selected_node = object
 		return true
 	return false

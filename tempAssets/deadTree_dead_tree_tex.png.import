@@ -2,17 +2,18 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kb2d8t6b5408"
-path.s3tc="res://.godot/imported/pineTree_bark.png-7cb7f349773fb3f4b930c861e18f8a14.s3tc.ctex"
+uid="uid://bac7k0dhx8nh2"
+path.s3tc="res://.godot/imported/deadTree_dead_tree_tex.png-8ad0dc7287a6fcec8a58129ed4edee32.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={}
 
 [deps]
 
-source_file="res://pineTree_bark.png"
-dest_files=["res://.godot/imported/pineTree_bark.png-7cb7f349773fb3f4b930c861e18f8a14.s3tc.ctex"]
+source_file="res://tempAssets/deadTree_dead_tree_tex.png"
+dest_files=["res://.godot/imported/deadTree_dead_tree_tex.png-8ad0dc7287a6fcec8a58129ed4edee32.s3tc.ctex"]
 
 [params]
 
