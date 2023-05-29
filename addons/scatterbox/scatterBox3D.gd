@@ -93,6 +93,8 @@ var _rng := RandomNumberGenerator.new()
 
 @onready var _space: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
 
+var current_color : Color
+
 
 func refresh():
 	multiMeshes = []
@@ -120,6 +122,8 @@ func refresh():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_rng.randomize()
+	
+	current_color = Color(0.0, 0.0, 1.0, 0.0784313725)
 	
 	#get the subnodes
 	draw_pointer = get_node_or_null("DrawPointer")
@@ -177,10 +181,13 @@ func move_to_mouse(camera, mouse: Vector2):
 
 func toggle_drawing():
 	is_drawing = !is_drawing
+	
+	#change the colour of the draw box
 	if(is_drawing):
-		print("Draw mode")
+		current_color = Color(0.0, 0.0, 1.0, 0.0784313725)
 	else:
-		print("Erase mode")
+		current_color = Color(1.0, 1.0, 1.0, 0.0784313725)
+	
 	return is_drawing
 
 
@@ -200,7 +207,9 @@ func _create_debug_area() -> void:
 	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	material.cull_mode = BaseMaterial3D.CULL_DISABLED
 	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	material.albedo_color = Color(1.0, 0.0, 0.0, 0.0784313725)
+	
+	material.albedo_color = current_color 
+		
 	material.no_depth_test = true
 	
 	var mesh: Mesh
@@ -227,6 +236,17 @@ func _update() -> void:
 		_update_debug_area_size()
 
 
+
+func grow_box():
+	placement_size += Vector3(0.5, 0.5, 0.5)
+	_update_debug_area_size()
+
+func shrink_box():
+	placement_size -= Vector3(0.5, 0.5, 0.5)
+	placement_size.x = clamp(placement_size.x, 0, placement_size.x)
+	placement_size.y = clamp(placement_size.y, 0, placement_size.y)
+	placement_size.z = clamp(placement_size.z, 0, placement_size.z)
+	_update_debug_area_size()
 
 func scatter_obj():
 	for i in range(count):
@@ -300,7 +320,7 @@ func erase_obj():
 			
 		for oldT in multiMesh.instance_count-1:
 			multiMesh.set_instance_transform(oldT, transforms[oldT])
-	
+
 
 func delete_obj():
 	for i in object_parent.get_children():

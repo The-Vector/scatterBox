@@ -85,6 +85,15 @@ func _forward_3d_gui_input(viewport_camera, event):
 			if(event.pressed):
 				erase_button.button_pressed = !erase_button.button_pressed
 	
+	#scroll wheel to change the size of the draw bow
+	if(event is InputEventMouseButton and selected_node != null):
+		if(event.button_index == 4):
+			selected_node.grow_box()
+			captured_event = true
+		if(event.button_index == 5):
+			selected_node.shrink_box()
+			captured_event = true
+	
 	
 	if(can_move_selection):
 		if(event is InputEventMouseButton):
