@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Plugin Test"
+config/name="scatterBox"
+config/description="Plugin to draw scenes/meshes on terrain."
 config/features=PackedStringArray("4.0", "Forward Plus")
 
 [dotnet]
