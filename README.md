@@ -31,3 +31,10 @@ Copy the contents of the addon folder into your own project's addon folder.
 - Automatically rotates the meshes to align with the terrain normals
 - Scale the draw box with the scroll wheel
 
+--- 
+
+# Examples
+
+<img src="./assets/plugin1.gif" alt="" />
+
+<img src="./assets/plugin2.gif" alt="" />
