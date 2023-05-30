@@ -58,7 +58,7 @@ func scatter_obj():
 		var endPos = pos
 		endPos.y -= placement_size.y
 		
-		var ray = PhysicsRayQueryParameters3D.create(startPos, endPos)
+		var ray = PhysicsRayQueryParameters3D.create(startPos, endPos, ~instanced_scene_collision_layers)
 		
 		var hit = _space.intersect_ray(ray)
 		
