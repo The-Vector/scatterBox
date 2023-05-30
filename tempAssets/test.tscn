@@ -38,7 +38,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_2gnoy")
 shape = SubResource("ConcavePolygonShape3D_044ut")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(10.7442, -0.444781, 0, 2.73985, 1.74418, 0, 0, 0, 10.656, 114.03, 22.8999, 0)
+transform = Transform3D(6.06769, -1.50657, 0, 9.28051, 0.985008, 0, 0, 0, 10.656, 114.03, 22.8999, 0)
 mesh = SubResource("PlaneMesh_ipgsw")
 surface_material_override/0 = SubResource("StandardMaterial3D_2gnoy")
 
@@ -60,10 +60,11 @@ environment = SubResource("Environment_ts1rx")
 [node name="ScatterScene3D" type="Node3D" parent="."]
 script = ExtResource("1_0e3rl")
 scenes = Array[PackedScene]([ExtResource("2_h0qp4")])
+instanced_scene_collision_layers = 2147483648
 count = 1
-placement_size = Vector3(11, 11, 11)
+placement_size = Vector3(9, 9, 9)
 
 [node name="DrawPointer" type="Node3D" parent="ScatterScene3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.4305, 0, -23.1325)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.4386, 0, 75.9871)
 
 [node name="ObjectParent" type="Node3D" parent="ScatterScene3D"]

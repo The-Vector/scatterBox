@@ -4,6 +4,33 @@ class_name ScatterScene3D
 
 @export var scenes: Array[PackedScene]
 
+@export_flags_3d_physics var instanced_scene_collision_layers
+
+
+#overwrite default code
+func move_to_mouse(camera, mouse: Vector2):
+	var start = camera.project_ray_origin(mouse)
+	var end = start + camera.project_ray_normal(mouse) * 1000
+	var result = _space.intersect_ray(PhysicsRayQueryParameters3D.create(start, end, ~instanced_scene_collision_layers))
+	
+	if result.is_empty(): 
+		return false
+	
+	var t := Transform3D()
+	t.origin = result.position
+		
+	t.origin += offset_position
+		
+	#align mesh with floor nomral
+	t.basis = Basis(result.normal.cross(global_transform.basis.z),
+			result.normal,
+			global_transform.basis.x.cross(result.normal),
+		).orthonormalized()
+	
+	draw_pointer.basis = t.basis
+	
+	draw_pointer.global_transform.origin = result.position
+	return true
 
 
 
@@ -60,6 +87,10 @@ func scatter_obj():
 		
 		var scene_inst = scenes[rand_scene].instantiate()
 		scene_inst.global_transform = t
+		
+		if(scene_inst is StaticBody3D):
+			scene_inst.collision_layer = instanced_scene_collision_layers
+			
 		
 		object_parent.add_child(scene_inst)
 		scene_inst.set_owner(get_tree().edited_scene_root)
