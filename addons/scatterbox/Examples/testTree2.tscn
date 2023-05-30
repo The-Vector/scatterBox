@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3]
 
-[ext_resource type="ArrayMesh" uid="uid://cphvxowdhpyxs" path="res://tempAssets/tree1.obj" id="1_8gvpx"]
-[ext_resource type="Texture2D" uid="uid://kb2d8t6b5408" path="res://tempAssets/pineTree_bark.png" id="2_p6i4n"]
-[ext_resource type="Texture2D" uid="uid://bqfgsww0lwu26" path="res://tempAssets/pineTree_leaves.png" id="3_h31vm"]
+[ext_resource type="ArrayMesh" uid="uid://cphvxowdhpyxs" path="res://addons/scatterbox/Examples/tree1.obj" id="1_8gvpx"]
+[ext_resource type="Texture2D" uid="uid://kb2d8t6b5408" path="res://addons/scatterbox/Examples/pineTree_bark.png" id="2_p6i4n"]
+[ext_resource type="Texture2D" uid="uid://bqfgsww0lwu26" path="res://addons/scatterbox/Examples/pineTree_leaves.png" id="3_h31vm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6tr7i"]
 albedo_texture = ExtResource("2_p6i4n")

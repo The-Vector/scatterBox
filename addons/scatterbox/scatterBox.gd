@@ -3,6 +3,7 @@ extends Node3D
 class_name ScatterBox
 
 
+#delete all of the meshes/objects 
 @export var deleteAll := false:
 	get: return deleteAll
 	set(value):
@@ -18,7 +19,7 @@ class_name ScatterBox
 			refresh()
 		refresh_btn = false
 
-
+#how far the mesh/object is from the gound
 @export var offset_position := Vector3(0, 0, 0):
 	get: return offset_position
 	set(value):
@@ -34,18 +35,21 @@ var object_parent : Node3D
 
 var is_drawing = true
 
+
 ## The number of instances to generate.
-@export_range(0, 10000, 1) var count := 100:
+@export_range(0, 1000, 1) var count := 1:
 	get: return count
 	set(value):
 		count = value
 		_update()
 
+#the size of the draw box
 @export var placement_size := Vector3(10.0, 10.0, 10.0):
 	get: return placement_size
 	set(value):
 		placement_size = value.clamp(Vector3.ONE * 0.01, Vector3.ONE * 100.0)
 		_update()
+
 
 @export_group("Random Size")
 
@@ -63,6 +67,7 @@ var is_drawing = true
 		max_random_size = value.clamp(Vector3.ONE * 0.01, Vector3.ONE * 100.0)
 		_update()
 
+
 @export_group("Random Rotation")
 
 ## Rotate each instance by a random amount between
@@ -73,13 +78,19 @@ var is_drawing = true
 		random_rotation = value.clamp(Vector3.ONE * 0.00, Vector3.ONE * 180.0)
 		_update()
 
+
 var _rng := RandomNumberGenerator.new()
 
 @onready var _space: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
 
 var current_color : Color
 
+#if the node is currently selected
+var selected = false
 
+#refresh the nodes
+#useful for the mesh scatter
+#as you need the meshinstances to be generated before adding anything to them
 func refresh():
 	pass
 
@@ -116,7 +127,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Engine.is_editor_hint():
-		if show_debug_area:
+		if show_debug_area and selected:
 			_create_debug_area()
 		else:
 			_delete_debug_area()
@@ -127,7 +138,7 @@ func _process(delta):
 	_update()
 
 
-
+#move the draw box to the mouse position
 func move_to_mouse(camera, mouse: Vector2):
 	var start = camera.project_ray_origin(mouse)
 	var end = start + camera.project_ray_normal(mouse) * 1000
@@ -153,13 +164,14 @@ func move_to_mouse(camera, mouse: Vector2):
 	return true
 
 
+
 func draw():
 	if(is_drawing):
 		scatter_obj()
 	else:
 		erase_obj()
 
-
+#toggle draw and erase mode
 func toggle_drawing():
 	is_drawing = !is_drawing
 	
@@ -170,6 +182,7 @@ func toggle_drawing():
 		current_color = Color(1.0, 1.0, 1.0, 0.0784313725)
 	
 	return is_drawing
+
 
 
 func _delete_debug_area() -> void:
@@ -217,7 +230,6 @@ func _update() -> void:
 		_update_debug_area_size()
 
 
-
 func grow_box():
 	placement_size += Vector3(0.5, 0.5, 0.5)
 	_update_debug_area_size()
@@ -239,7 +251,8 @@ func scatter_obj():
 func erase_obj():
 	pass
 
-#delete all the objects
+
+#delete all the created/painted objects
 func delete_obj():
 	for i in object_parent.get_children():
 		i.queue_free()

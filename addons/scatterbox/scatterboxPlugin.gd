@@ -29,14 +29,17 @@ func _enter_tree():
 
 
 func _exit_tree():
-	# Clean-up of the plugin goes here.
+	# Clean-up of the plugin
 	remove_custom_type("ScatterMesh3D")
+	remove_custom_type("ScatterScene3D")
+	
 	InputMap.action_erase_events("PlaceTerrain")
 	remove_erase_button()
 
 
 func _make_visible(visible):
 	if visible:
+		selected_node.selected = true
 		add_erase_button()
 	else:
 		remove_erase_button()
@@ -51,6 +54,7 @@ func add_erase_button():
 	erase_button.connect("toggled", toggle_drawing)
 	add_control_to_container(EditorPlugin.CONTAINER_SPATIAL_EDITOR_MENU, erase_button)
 
+
 func remove_erase_button():
 	if erase_button == null:
 		return
@@ -60,17 +64,27 @@ func remove_erase_button():
 	erase_button = null
 
 
+#when selecting another node hide the draw box
 func _on_selection_changed():
-	pass
+	if(selected_node != null):
+		#reset the current node
+		selected_node.selected = false
+		selected_node.is_drawing = false
+		selected_node = null
+		erase_button.button_pressed = false
 
 
+#if the current node is a scatterbox get the custom keybinds/actions
 func _handles(object):
 	if (object is ScatterBox):
 		selected_node = object
+		selected_node.selected = true
 		return true
+	
 	return false
 
 
+#get the inputs
 func _forward_3d_gui_input(viewport_camera, event):
 	var captured_event = false
 	
@@ -123,11 +137,9 @@ func _forward_3d_gui_input(viewport_camera, event):
 	return captured_event
 
 
-
 func toggle_drawing(_toggle = false):
 	if(selected_node != null):
 		var res = selected_node.toggle_drawing()
-
 
 
 func move_object_to_mouse(camera, object, mouse_pos):
