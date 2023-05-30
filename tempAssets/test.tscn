@@ -1,7 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://mbn22bwqxdim"]
+[gd_scene load_steps=10 format=3 uid="uid://mbn22bwqxdim"]
 
-[ext_resource type="Script" path="res://addons/scatterbox/scatterMesh3D.gd" id="1_3r3v4"]
-[ext_resource type="ArrayMesh" uid="uid://c82e6hpg6t5kw" path="res://tempAssets/deadTree.obj" id="2_efdfu"]
+[ext_resource type="Script" path="res://addons/scatterbox/scatterScene3D.gd" id="1_0e3rl"]
+[ext_resource type="PackedScene" uid="uid://cpk1gnmjixucq" path="res://tempAssets/testTree.tscn" id="2_h0qp4"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ipgsw"]
 size = Vector2(10, 10)
@@ -24,14 +24,6 @@ sky_material = SubResource("ProceduralSkyMaterial_obt8j")
 background_mode = 2
 sky = SubResource("Sky_n44n5")
 ambient_light_color = Color(0.411765, 0.411765, 0.411765, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_thf6c"]
-
-[sub_resource type="MultiMesh" id="MultiMesh_oh04x"]
-transform_format = 1
-instance_count = 3
-mesh = ExtResource("2_efdfu")
-buffer = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
 [node name="root" type="Node3D"]
 
@@ -65,16 +57,13 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ts1rx")
 
-[node name="ScatterMesh3D" type="Node3D" parent="."]
-script = ExtResource("1_3r3v4")
-meshes = Array[Mesh]([ExtResource("2_efdfu")])
-mesh_materials = Array[Material]([SubResource("StandardMaterial3D_thf6c")])
-count = 2
+[node name="ScatterScene3D" type="Node3D" parent="."]
+script = ExtResource("1_0e3rl")
+scenes = Array[PackedScene]([ExtResource("2_h0qp4")])
+count = 1
+placement_size = Vector3(11, 11, 11)
 
-[node name="DrawPointer" type="Node3D" parent="ScatterMesh3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8439, -3.43323e-06, -39.8917)
+[node name="DrawPointer" type="Node3D" parent="ScatterScene3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.1774, 6.86645e-06, -52.7448)
 
-[node name="ObjectParent" type="Node3D" parent="ScatterMesh3D"]
-
-[node name="@@22156" type="MultiMeshInstance3D" parent="ScatterMesh3D/ObjectParent"]
-multimesh = SubResource("MultiMesh_oh04x")
+[node name="ObjectParent" type="Node3D" parent="ScatterScene3D"]

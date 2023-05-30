@@ -136,7 +136,6 @@ func move_to_mouse(camera, mouse: Vector2):
 	if result.is_empty(): 
 		return false
 	
-		
 	var t := Transform3D()
 	t.origin = result.position
 		

@@ -3,7 +3,6 @@ extends EditorPlugin
 
 
 var selection = get_editor_interface().get_selection()
-var undo_redo = get_undo_redo()
 
 var selected_node
 
@@ -12,10 +11,11 @@ var can_move_selection = true
 
 var erase_button : CheckBox = null
 
+
 func _enter_tree():
 	# Initialization of the plugin goes here.
-	add_custom_type("ScatterMesh3D", "Node3D", preload("scatterMesh3D.gd"), preload("scatterbox3D.png"))
-	
+	add_custom_type("ScatterMesh3D", "ScatterBox", preload("scatterMesh3D.gd"), preload("scatterbox3D.png"))
+	add_custom_type("ScatterScene3D", "ScatterBox", preload("scatterScene3D.gd"), preload("scatterbox3D.png"))
 	
 	selection.selection_changed.connect(_on_selection_changed)
 	
@@ -60,13 +60,12 @@ func remove_erase_button():
 	erase_button = null
 
 
-
 func _on_selection_changed():
 	pass
 
 
 func _handles(object):
-	if (object is ScatterMesh3D):
+	if (object is ScatterBox):
 		selected_node = object
 		return true
 	return false
@@ -128,7 +127,7 @@ func _forward_3d_gui_input(viewport_camera, event):
 func toggle_drawing(_toggle = false):
 	if(selected_node != null):
 		var res = selected_node.toggle_drawing()
-	
+
 
 
 func move_object_to_mouse(camera, object, mouse_pos):
