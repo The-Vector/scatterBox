@@ -64,6 +64,6 @@ count = 1
 placement_size = Vector3(11, 11, 11)
 
 [node name="DrawPointer" type="Node3D" parent="ScatterScene3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.1774, 6.86645e-06, -52.7448)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.4305, 0, -23.1325)
 
 [node name="ObjectParent" type="Node3D" parent="ScatterScene3D"]

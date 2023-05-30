@@ -59,9 +59,10 @@ func scatter_obj():
 		var rand_scene = _rng.randi_range(0, scenes.size()-1)
 		
 		var scene_inst = scenes[rand_scene].instantiate()
-		scene_inst.set_owner(get_tree().edited_scene_root)
 		scene_inst.global_transform = t
+		
 		object_parent.add_child(scene_inst)
+		scene_inst.set_owner(get_tree().edited_scene_root)
 
 
 func erase_obj():
