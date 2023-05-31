@@ -154,6 +154,7 @@ func move_to_mouse(camera, mouse: Vector2):
 func select():
 	selected = true
 	_create_debug_area()
+	_update_debug_area()
 
 func deselect():
 	selected = false
@@ -167,15 +168,12 @@ func draw():
 	else:
 		erase_obj()
 
+
 #toggle draw and erase mode
 func toggle_drawing():
 	is_drawing = !is_drawing
-	
 	#change the colour of the draw box
-	if(is_drawing):
-		current_color = Color(0.0, 0.0, 1.0, 0.0784313725)
-	else:
-		current_color = Color(1.0, 1.0, 1.0, 0.0784313725)
+	_update_debug_area()
 	
 	return is_drawing
 
@@ -211,6 +209,15 @@ func _create_debug_area() -> void:
 	if(draw_pointer != null):
 		draw_pointer.add_child(_debug_draw_instance)
 		_update_debug_area_size()
+
+
+func _update_debug_area() -> void:
+	if(is_drawing):
+		current_color = Color(0.0, 0.0, 1.0, 0.0784313725)
+	else:
+		current_color = Color(1.0, 1.0, 1.0, 0.0784313725)
+	
+	_debug_draw_instance.material_override.albedo_color = current_color
 
 
 func _update_debug_area_size() -> void:
