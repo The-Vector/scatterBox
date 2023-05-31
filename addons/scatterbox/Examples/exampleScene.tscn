@@ -70,206 +70,205 @@ shadow_enabled = true
 environment = SubResource("Environment_ts1rx")
 
 [node name="ScatterScene3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_25gfb")
 scenes = Array[PackedScene]([ExtResource("2_k4blw")])
 instanced_scene_collision_layers = 2147483648
 placement_size = Vector3(11, 11, 11)
 
 [node name="DrawPointer" type="Node3D" parent="ScatterScene3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.4118, 0, -41.4355)
+transform = Transform3D(0.547228, -0.836984, 0, 0.836984, 0.547228, 0, 0, 0, 1, 106.418, 11.2568, 34.6756)
 
 [node name="ObjectParent" type="Node3D" parent="ScatterScene3D"]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(0.797988, 0, 0, 0, 0.999003, 0, 0, 0, 1.01208, 46.0034, 0, 36.8726)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37074" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37074" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(0.782201, 0, 0, 0, 0.829013, 0, 0, 0, 0.839545, 37.0873, 0, 41.6799)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37076" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37076" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(0.946694, 0, 0, 0, 1.04546, 0, 0, 0, 0.823192, 38.9299, 0, 38.562)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37078" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37078" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(1.02927, 0, 0, 0, 0.915129, 0, 0, 0, 0.968389, 42.7563, 0, 48.4961)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37080" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37080" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(0.976114, 0, 0, 0, 1.02736, 0, 0, 0, 1.11435, 44.2365, 0, 49.0484)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37082" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37082" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(0.894563, 0, 0, 0, 1.06881, 0, 0, 0, 0.886342, 46.5028, 0, 52.45)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37084" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37084" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(0.873567, 0, 0, 0, 1.16389, 0, 0, 0, 1.04846, 37.8415, 0, 59.3599)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37086" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37086" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(0.941724, 0, 0, 0, 0.870626, 0, 0, 0, 0.870662, 34.5919, 0, 54.2309)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37088" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37088" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(1.07602, 0, 0, 0, 1.0351, 0, 0, 0, 0.931141, 36.0804, 0, 57.8325)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37090" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37090" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(1.23424, 0, 0, 0, 0.787998, 0, 0, 0, 0.801253, 23.8158, 0, 53.3959)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37092" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37092" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(1.08069, 0, 0, 0, 1.07078, 0, 0, 0, 0.876528, 22.4362, -8.58307e-07, 56.6444)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37094" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37094" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(0.996197, 0, 0, 0, 1.16254, 0, 0, 0, 0.955885, 21.8945, 0, 56.6063)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37096" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37096" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(1.03244, 0, 0, 0, 0.9644, 0, 0, 0, 1.09486, 17.9744, 0, 54.7243)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37098" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37098" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(0.948157, 0, 0, 0, 1.06047, 0, 0, 0, 1.1848, 3.26424, 0, 51.553)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37100" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37100" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(0.864458, 0, 0, 0, 0.861902, 0, 0, 0, 0.786143, 6.67025, 0, 50.1844)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37102" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37102" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(1.05563, 0, 0, 0, 1.11596, 0, 0, 0, 1.20995, -5.15553, 0, 52.0854)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37104" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37104" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(0.753813, 0, 0, 0, 1.24515, 0, 0, 0, 1.12718, -9.16608, 0, 46.3264)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37106" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37106" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(1.18955, 0, 0, 0, 0.84802, 0, 0, 0, 1.1412, -5.66357, 0, 50.1009)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37108" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37108" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(0.872984, 0, 0, 0, 1.0203, 0, 0, 0, 1.09167, -14.5093, 0, 38.9125)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37110" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37110" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(1.15885, 0, 0, 0, 1.0014, 0, 0, 0, 1.24613, -8.89733, 0, 37.1329)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37112" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37112" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(1.02608, 0, 0, 0, 1.00332, 0, 0, 0, 1.00171, -13.5912, 0, 37.6116)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37114" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37114" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(1.12381, 0, 0, 0, 0.830194, 0, 0, 0, 1.18661, -9.0515, 0, 38.5295)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37116" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37116" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(1.16963, 0, 0, 0, 1.21235, 0, 0, 0, 1.01367, -19.7616, 0, 36.3367)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37118" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37118" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(0.861319, 0, 0, 0, 0.834268, 0, 0, 0, 1.08568, -17.4276, 0, 26.2306)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37120" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37120" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(1.02132, 0, 0, 0, 1.05199, 0, 0, 0, 1.18631, -19.9502, 0, 24.8547)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37122" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37122" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(0.941095, 0, 0, 0, 1.04853, 0, 0, 0, 0.827859, -23.198, 0, 29.5481)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37124" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37124" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(1.05426, 0, 0, 0, 1.18932, 0, 0, 0, 1.15191, -19.4031, 0, 18.8569)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37126" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37126" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(0.822528, 0, 0, 0, 1.08612, 0, 0, 0, 0.767492, -15.7988, 0, 19.5136)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37128" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37128" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(0.829927, 0, 0, 0, 1.03828, 0, 0, 0, 0.802783, -16.5044, 0, 25.2133)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37130" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37130" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(1.04908, 0, 0, 0, 0.799374, 0, 0, 0, 1.08595, -19.652, 0, 18.8134)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37132" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37132" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(0.943412, 0, 0, 0, 0.913572, 0, 0, 0, 1.13339, -14.2319, 0, 25.2275)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37134" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37134" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(1.15821, 0, 0, 0, 0.929866, 0, 0, 0, 0.936802, -15.1614, 0, 18.0501)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37162" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37162" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(1.17274, 0, 0, 0, 1.13077, 0, 0, 0, 0.861335, 9.7248, 0, -14.6496)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37164" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37164" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(1.0026, 0, 0, 0, 0.978188, 0, 0, 0, 1.0496, 11.5473, 0, -10.4557)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37166" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37166" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(0.914572, 0, 0, 0, 0.956001, 0, 0, 0, 0.891898, 11.6975, 0, -7.67533)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37168" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37168" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(1.16123, 0, 0, 0, 0.975602, 0, 0, 0, 1.12992, 10.6074, 0, -2.60609)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37170" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37170" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(1.01126, 0, 0, 0, 1.01804, 0, 0, 0, 1.08224, 7.80789, 0, 6.09877)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37172" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37172" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(0.820158, 0, 0, 0, 0.799542, 0, 0, 0, 0.761506, 7.57795, 0, 7.48388)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37174" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37174" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(1.18026, 0, 0, 0, 0.75125, 0, 0, 0, 0.940997, 3.73411, 0, 10.1205)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37176" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37176" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(1.20624, 0, 0, 0, 1.15532, 0, 0, 0, 1.0209, 6.77754, 0, 16.2291)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37192" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37192" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(1.21216, 0, 0, 0, 1.23992, 0, 0, 0, 0.96144, 33.6352, 0, -18.7713)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37194" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37194" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(1.06331, 0, 0, 0, 1.1659, 0, 0, 0, 1.22666, 38.7136, 0, -10.7604)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37196" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37196" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(1.01199, 0, 0, 0, 0.813325, 0, 0, 0, 0.892093, 36.725, 0, -7.70035)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37198" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37198" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(1.06326, 0, 0, 0, 0.973779, 0, 0, 0, 1.2284, 29.9569, 0, -2.36848)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37200" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37200" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(0.92459, 0, 0, 0, 1.02285, 0, 0, 0, 1.18038, 27.2282, 0, 2.17105)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37202" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37202" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(1.17853, 0, 0, 0, 1.12545, 0, 0, 0, 1.11706, 32.1427, 0, 14.4296)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37204" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37204" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(0.845607, 0, 0, 0, 1.18914, 0, 0, 0, 1.04556, 25.8256, 0, 19.1214)
 collision_layer = 2147483648
 
-[node name="@StaticBody3D@37206" type="StaticBody3D" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
+[node name="@StaticBody3D@37206" parent="ScatterScene3D/ObjectParent" instance=ExtResource("2_k4blw")]
 transform = Transform3D(0.949069, 0, 0, 0, 1.24945, 0, 0, 0, 1.24184, 27.9333, 0, 13.2414)
 collision_layer = 2147483648
 
@@ -279,7 +278,7 @@ meshes = Array[Mesh]([ExtResource("4_6j7gc")])
 mesh_materials = Array[Material]([SubResource("StandardMaterial3D_kl0dw")])
 
 [node name="DrawPointer" type="Node3D" parent="ScatterMesh3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.9623, -6.86645e-06, 33.1334)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9421, -3.43323e-06, -23.2023)
 
 [node name="ObjectParent" type="Node3D" parent="ScatterMesh3D"]
 

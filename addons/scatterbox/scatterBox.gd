@@ -24,7 +24,7 @@ class_name ScatterBox
 	get: return offset_position
 	set(value):
 		offset_position = value.clamp(Vector3.ONE * -100.0, Vector3.ONE * 100.0)
-		_update()
+		_update_debug_area_size()
 
 
 var show_debug_area := true
@@ -41,14 +41,14 @@ var is_drawing = true
 	get: return count
 	set(value):
 		count = value
-		_update()
+		_update_debug_area_size()
 
 #the size of the draw box
 @export var placement_size := Vector3(10.0, 10.0, 10.0):
 	get: return placement_size
 	set(value):
 		placement_size = value.clamp(Vector3.ONE * 0.01, Vector3.ONE * 100.0)
-		_update()
+		_update_debug_area_size()
 
 
 @export_group("Random Size")
@@ -58,14 +58,14 @@ var is_drawing = true
 	get: return min_random_size
 	set(value):
 		min_random_size = value.clamp(Vector3.ONE * 0.01, Vector3.ONE * 100.0)
-		_update()
+		_update_debug_area_size()
 
 ## The maximum random size for each instance.
 @export var max_random_size := Vector3(1.25, 1.25, 1.25):
 	get: return max_random_size
 	set(value):
 		max_random_size = value.clamp(Vector3.ONE * 0.01, Vector3.ONE * 100.0)
-		_update()
+		_update_debug_area_size()
 
 
 @export_group("Random Rotation")
@@ -76,7 +76,7 @@ var is_drawing = true
 	get: return random_rotation
 	set(value):
 		random_rotation = value.clamp(Vector3.ONE * 0.00, Vector3.ONE * 180.0)
-		_update()
+		_update_debug_area_size()
 
 
 var _rng := RandomNumberGenerator.new()
@@ -124,19 +124,6 @@ func _ready():
 	refresh()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if Engine.is_editor_hint():
-		if show_debug_area and selected:
-			_create_debug_area()
-		else:
-			_delete_debug_area()
-	else:
-		set_notify_transform(false)
-		set_ignore_transform_notification(true)
-	
-	_update()
-
 
 #move the draw box to the mouse position
 func move_to_mouse(camera, mouse: Vector2):
@@ -163,6 +150,15 @@ func move_to_mouse(camera, mouse: Vector2):
 	draw_pointer.global_transform.origin = result.position
 	return true
 
+
+func select():
+	selected = true
+	_create_debug_area()
+
+func deselect():
+	selected = false
+	is_drawing = true
+	_delete_debug_area()
 
 
 func draw():
@@ -221,13 +217,6 @@ func _update_debug_area_size() -> void:
 	if _debug_draw_instance != null && _debug_draw_instance.is_inside_tree():
 		_debug_draw_instance.mesh.size = placement_size
 
-
-func _update() -> void:
-	if !_space: return
-	#scatter()
-	
-	if Engine.is_editor_hint():
-		_update_debug_area_size()
 
 
 func grow_box():

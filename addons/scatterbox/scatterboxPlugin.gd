@@ -68,8 +68,7 @@ func remove_erase_button():
 func _on_selection_changed():
 	if(selected_node != null):
 		#reset the current node
-		selected_node.selected = false
-		selected_node.is_drawing = true
+		selected_node.deselect()
 		selected_node = null
 		erase_button.button_pressed = false
 
@@ -78,7 +77,7 @@ func _on_selection_changed():
 func _handles(object):
 	if (object is ScatterBox):
 		selected_node = object
-		selected_node.selected = true
+		selected_node.select()
 		return true
 	
 	return false
